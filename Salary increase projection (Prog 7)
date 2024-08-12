@@ -1,0 +1,76 @@
+/**
+ * Filename: YohannesAzProg07.cpp - This program will take a starting salary, an annual increase percent,
+ * and a number of years before outputting a tabular list containing each year and its respective increased
+ * salary, based on the annual increase percent.
+ * 
+ * @author  Aziel Yohannes
+ * @version 1.0
+ * @since   2024-03-07
+ */
+// Headers and/or preprocessors used:
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <limits>
+using namespace std;
+
+/**
+ * The main() function will prompt the user for 3 different inputs (Salary, Years, AnnRaise) and
+ * output a tabular list containing the salary increased by a percent.
+ * 
+ * a. Declare all variables.
+ * b. Display a description of the program.
+ * c. Prompt the user for the first variable, "salary".
+ * d. Store user input into the variable.
+ * e. Start a while loop, with the condition being if cin.fail is true. If entered, cin is cleared, the stream
+ *  is ignored, the user is prompted for a valid input, and that input is stored back into the variable.
+ * f. Prompt the user for "AnnRaise".
+ * g. Repeat step 'e' for "AnnRaise".
+ * h. Prompt the user for "Years".
+ * i. Repeat step 'e' for "Years".
+ * j. Display a string that acts as headers for the tabular list, using escape characters '\n' and '\t'
+ *  for formatting.
+ * k. Display a string of dashes, acts as a barrier between the header and the information itself.
+ * l. Start a for loop, creating a variable 'i', with the condition that i is less than or equal to "Years",
+ *  and adding +1 to i with each iteration of the loop. With each iteration, the program will display 
+ *  'i', acting as the years in the list, '\t' for formatting, and "Salary", to display the current Salary. After
+ * being displayed, "Salary" is set equal to "Salary" added to the percent * the salary before, creating a new salary.
+ * This process is repeated until 'i' is greater than "Years".
+ */
+
+int main()
+{
+    double AnnRaise, Years, Salary;
+    cout << "This program will create a salary schedule based on your starting salary, your annual percent raise, and the number of years you want displayed." << endl;
+    cout << "Enter your starting salary: ";
+    cin >> Salary;
+    while (cin.fail()){
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        cout << "Invalid input. Please enter an integer: ";
+        cin >> Salary;
+    }
+    cout << "Enter your annual percent increase: ";
+    cin >> AnnRaise;
+    while (cin.fail()){
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        cout << "Invalid input. Please enter an integer: ";
+        cin >> AnnRaise;
+    }
+    cout << "Enter the number of years: ";
+    cin >> Years;
+    while (cin.fail() or Years < 0){
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        cout << "Invalid input. Please enter a positive integer: ";
+        cin >> Years;
+    }
+    cout << "\nYears\tSalary" << endl;
+    cout << "----------------" << endl;
+    for (int i = 1; i <= Years; i++) {
+        cout << setprecision(2) << fixed << i << "\t" << Salary << endl;
+        Salary = Salary + (Salary * (AnnRaise/100));
+    }
+    return 0;
+}
