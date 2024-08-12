@@ -1,0 +1,80 @@
+/**
+ * Filename: YohannesAzProg08.cpp - This program will accept a user-given integer and display a
+ * schedule of payments, dependent on the initial integer.
+ * 
+ * @author  Aziel Yohannes
+ * @version 1.0
+ * @since   2024-03-21
+ */
+// Header files and/or preprocessors used:
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+#include <limits>
+using namespace std;
+
+/**
+ * The main() function below acts as the main program, taking an integer input and outputting
+ * a schedule for loan payments, continuing until the initial integer reaches 0.
+ * 
+ * a. Declare all variables, initializing AnnRate in the process.
+ * b. Display the purpose of the program to the terminal.
+ * c. Prompt the user for the initial purchase price.
+ * d. Store the user's input into PurchasePrice.
+ * e. Start a while loop on the condition that the cin command fails, and if it does, clears and ignores
+ * everything in the stream before prompting the user for a valid integer.
+ * f. Set StartBal equal to PurchasePrice - 10% (seen as PurchasePrice * .1).
+ * g. Set the EndBal equal to the StartBal to start the loop effectively.
+ * h. Display all headers needed for the schedule.
+ * i. Display a line of hyphens, serving as a barrier to separate the headers and the schedule's contents.
+ * j. Start a for loop, initializing the Month variable, setting the loop condition to end when
+ * EndBal reaches < 0, and with the Month variable incrementing every iteration of the loop.
+ * k. Set Interest equal to the StartBal * AnnRate/12 (representing the Monthly Rate). The result is then rounded
+ * up the keep calculations within about 2-3 significant figures.
+ * l. Set MonthlyPay equal to 5% of (PurchasePrice - 10%).
+ * m. Set Principal equal to MonthlyPay - Interest.
+ * n. Start an if statement on the condition that EndBal is less than 0, in which case, MonthlyPay and
+ * Principal are both set to StartBal, before setting EndBal equal to StartBal - Principal. The Interestis then set to 0.
+ * This is done only if the EndBal ends up negative, in which case, the current StartBal is contain all money left over to be owed, which
+ * allows for the MonthlyPay and Principal to just be equal to the StartBal, while the EndBal must be calculated to end up at 0, due to
+ * the fact that the statement is entered only at the last line of the schedule.
+ * o. Display Month, StartBal, Interest, Principal, MonthlyPay, and EndBal in order under their repective header.
+ * p. Set StartBal equal to the EndBal for accurate calculations during the next iteration.
+ * q. Program returns 0 and ends.
+ * 
+ * @param args: Unused
+ * @return:     Nothing is returned
+ */
+
+int main()
+{
+    float PurchasePrice, MonthlyPay, Interest, Principal, StartBal, AnnRate = .12, EndBal;
+    cout << "This program will take a total purchase price and give you a loan payment schedule." << endl;
+    cout << "Please enter the purchase price: ";
+    cin >> PurchasePrice;
+    while (cin.fail()){
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        cout << "Invalid input. Please enter a positive integer: ";
+        cin >> PurchasePrice;
+    }
+    StartBal = PurchasePrice - (PurchasePrice * .1);
+    EndBal = StartBal;
+    cout << "Month\tStarting Balance\tInterest\tPrincipal\tPayment\t   Ending Balance" << endl;
+    cout << "-------------------------------------------------------------------------------------------" << endl;
+    for (int Month = 1; EndBal > 0; Month++){
+        Interest = (round(100.0 * (StartBal * (AnnRate/12))))/100.0;
+        MonthlyPay = (PurchasePrice - (PurchasePrice * .1)) * .05;
+        Principal = MonthlyPay - Interest;
+        EndBal = StartBal - Principal;
+        if (EndBal < 0){
+            MonthlyPay = StartBal;
+            Principal = StartBal;
+            EndBal = StartBal - Principal;
+            Interest = 0;
+        }
+        cout << setprecision(5) << Month << "\t" << StartBal << "\t\t\t" << Interest << "\t\t" << Principal << "\t\t" << MonthlyPay << "\t\t" << EndBal << endl;
+        StartBal = EndBal;
+    }
+    return 0;
+}
