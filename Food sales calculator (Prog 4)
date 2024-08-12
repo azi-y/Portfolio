@@ -1,0 +1,80 @@
+/**
+ * Filename: YohannesAzProg04.cpp - This program takes the user's input and calculates the 
+ * revenue, costs, and profits of each type of meal.
+ * 
+ * @author  Aziel Yohannes
+ * @version 1.0
+ * @since   2024-02-15
+ */
+ 
+ //Header files and/or preprocessors used:
+ 
+#include <iostream>
+#include <limits>
+using namespace std;
+
+/**
+ * The main function will output the revenues and profits of both types of meals.
+ * a. Declare all variables used in the program, being for meal count, cost, and revenue, of both types.
+ * b. Display a description of the program and prompt user for the adult meal count number.
+ * c. Store user input.
+ * d. Starts a while loop, on the condition that the user input failed, meaning an invalid character was typed.
+ *      d1. If the loop is entered, it clears all cin error flags
+ *      d2. It ignores whatever might be in the stream until '\n' is found
+ *      d3. Prompts the user for a valid input, specifying the parameters
+ *      d4. Stores the new input
+ * e. Prompts the user for the child meal count number.
+ * f. Stores input
+ * g. Runs the same while loop from d.
+ * h. Calculate revenue for adult meals by multiplying the meal count by the price per meal ($7).
+ * i. Repeat the above process for child meals ($4).
+ * j. Displays the revenue for adult meals.
+ * k. Displays the revenue for child meals.
+ * l. Display total revenue.
+ * m. Calculates adult meal costs by multiplying the meal count by the cost per meal ($5.35).
+ * n. Runs an if statement if the costs are negative.
+ * o. Sets the cost as equal to the costs times -1 to flip signs and make it valid for 
+ *  calculation (negative meal counts wouldn't work without this).
+ * p. Repeats m-o for child costs ($4.10).
+ * q. Displays profits for adult and child meals (found with a "revenue - costs" formula) as well as total income.
+ * 
+ * @params args - None
+ * @return      - 0
+ * 
+ */
+
+int main()
+{
+    float AMeals, CMeals, ACosts, CCosts, ARev, CRev;
+    cout << "This program will calculate the prices of all meals as well as profit gained from meals." 
+    << "\nEnter the number of Adult Meals ordered: ";
+    cin >> AMeals;
+    while (cin.fail()){
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Please input a numerical digit: ";
+        cin >> AMeals;
+    }
+    cout << "Enter the number of Child Meals ordered: ";
+    cin >> CMeals;
+    while (cin.fail()){
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Please input a numerical digit: ";
+        cin >> CMeals;
+    }
+    ARev = AMeals * 7.0;
+    CRev = CMeals * 4.0;
+    cout << AMeals << " adult meals were ordered at $7 each. \n   Total is $" << ARev;
+    cout << "\n" << CMeals << " child meals were ordered at $4 each. \n   Total is $" << CRev;
+    cout << "\nTotal revenue is $" << ARev + CRev << "\n";
+    ACosts = AMeals * 5.35;
+    if (ACosts < 0.0)
+        ACosts = ACosts * -1.0;
+    CCosts = CMeals * 4.10;
+    if (CCosts < 0.0)
+        CCosts = CCosts * -1.0;
+    cout << "Profits:\n   Adult profit is $" << ARev - ACosts << "\n   Child profit is $" 
+    << CRev - CCosts << "\nTotal profit is $" << (ARev - ACosts) + (CRev - CCosts);
+    return 0;
+}
