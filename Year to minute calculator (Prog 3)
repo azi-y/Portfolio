@@ -1,0 +1,53 @@
+/**
+ * Filename: YohannesAzProg03.cpp - This program will take a user-given number of years
+ * and calculate, then display the number of minutes in said years to the screen.
+ * 
+ * @author Aziel Yohannes
+ * @version 1.0
+ * @since 2024-02-08
+ */
+//Header files and/or preprocessors used:
+#include <iostream>
+#include <limits>
+#include <iomanip>
+using namespace std;
+
+/**
+ * The main() function will display the number of minutes in a given year or years.
+ * 
+ * A. Establish the constant "MinPerYear" variable used for calculation as well as setting 
+ * up "num_years" and "result" for upcoming calculation.
+ * B. Print a description of the program and prompts the user for the amount of years.
+ * C. Store user input into the variable "num_years".
+ * D. Use a while loop to check the user's input and will enter the loop if the
+ * is negative, zero, or a non-digit.
+ *      D1. If entered, the input is cleared.
+ *      D2. The error flags produced by a potential non-digit are removed.
+ *      D3. Prompt the user for a valid input, specifying what the program accepts.
+ *      D4. Store user's input.
+ * E. Multiply the number of years by "MinPerYear" and store the result in "result".
+ * F. Display a string explaining that the number of minutes in the years they inputted is "result" with
+ * a precision of up to 14 digits in length.
+ * G. Program ends.
+ * 
+ * @param args - None.
+ * @return     - 0.
+ * 
+ */
+
+int main()
+{
+    double MinPerYear = 525600, num_years, result;
+    cout << "This program will calculate the number of minutes in any given amount of years." << "\nEnter the number of years: ";
+    cin >> num_years;
+    while(num_years <= 0){
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Please input a positive numerical digit not equal to zero: ";
+        cin >> num_years;
+    }
+    result = num_years * MinPerYear;
+    cout << setprecision(14) << "The number of minutes in " << num_years << " year(s) is " << result << ".";
+    return 0;
+}
+
