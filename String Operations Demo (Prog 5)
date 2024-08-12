@@ -1,0 +1,61 @@
+/**
+ * Filename: YohannesAzProg05.cpp - This program will accept a user-given string of at least 20 chracters and
+ * perform numerous different operations on said string to produce various outputs.
+ * 
+ * @author Aziel Yohannes
+ * @version 1.0
+ * @since 2024-02-24
+*/
+// Headers and/or preproccesors used:
+#include <iostream>
+#include <string>
+#include <limits>
+#include <stack>
+using namespace std;
+
+/**
+ * The main() function below acts as the main program, accepting user-input and returning various different outputs
+ * to the terminal.
+ * 
+ * a. Declare both string variables used in the program.
+ * b. Display a description of the program and prompt the user for a string.
+ * c. Use the "getline()" function to store everything from the 'is' to 'str1'.
+ * d. Use a while loop, for while the length of 'str1' is below 20, wipe the input and prompt the
+ * the user for a valid input.
+ * e. Displays the original string.
+ * f. Add a newline for style and displays the length of 'str1' as the number of characters.
+ * g. Copy 'str1' to 'str2'.
+ * h. Display the copied 'str2'.
+ * i. Display 'str2' after appending " Dallas College".
+ * j. Display the first to 12th characters of 'str1' using "str.substr()".
+ * k. Display 'str2' after appending "s".
+ * l. Pop the last character from 'str2'.
+ * m. Display the new 'str2'.
+ * 
+ * @param args - None.
+ * @return     - 0.
+*/
+
+int main()
+{
+    string str1, str2;
+    cout << "This program will take a 20 character (or more) string, given by you, and perform" 
+    " numerous string operations for different outputs." << "Please enter the string:\n";
+    getline(cin, str1);
+    while (str1.length() < 20){
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        cout << "Invalid input. Please enter a string of at least 20 characters: \n";
+        cin >> str1;
+    }
+    cout << "a: Original string: " << str1;
+    cout << "\n" << "b: Number of characters: " << str1.length() << "\n";
+    str2 = str1;
+    cout << "c: A copy of the string stored in \"str2\" is: " << str2;
+    cout << "\nd: String after appending \" Dallas College\" is: " << str2.append(" Dallas College");
+    cout << "\ne: Substring from the first to 12th letter is: " << str1.substr(0, 12);
+    cout << "\nf: String after inserting \"s\" at the end is: " << str2.append("s");
+    str2.pop_back();
+    cout << "\ng: String after removing a character from the end: " << str2;
+    return 0;
+}
