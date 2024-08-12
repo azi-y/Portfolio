@@ -1,0 +1,280 @@
+/**
+ * Filename: YohannesAzProg13.cpp - This program will make a class named MyInteger, take a user's input, and perform various
+ *  operations on the integer using the class methods.
+ * 
+ * @author -  Aziel Yohannes
+ * @version - 1.0
+ * @since -   2024-04-26
+ */
+ //Headers and/or preproccers:
+#include <iostream>
+#include <string>
+#include <vector>
+#include <cstring>
+using namespace std;
+
+/**
+ * The MyInteger class contains the methods used to operate on the user's input. It also contains
+ *  a private variable value that stores the integer value of the user's input.
+ * 
+ * MyInteger()
+ *  The MyInteger constructor initializes the variable used in storing the user's input's integer value.
+ * a. Initializes the variable.
+ * @param args - Unused
+ * @return - Nothing
+ * 
+ * setInteger(int x)
+ *  The setInteger method takes an integer and sets value equal to x.
+ * a. Defines value equal to x.
+ * @param args - int x
+ * @return - Nothing
+ * 
+ * getInteger()
+ *  The getInteger method returns value, allowing for the use of the private value safely.
+ * a. Returns value.
+ * @param args - Unused
+ * @return - int value
+ * 
+ * isEven()
+ *  The isEven method will evaluate the value of the object and return true/false based on
+ *  the remainder of division.
+ * a. Start an if statement, on the condition that there is no remainder to value / 2. If entered, the method
+ * returns true.
+ * b. If the statement isn't entered, return false.
+ * @param args - Unused
+ * @return - bool true, bool false
+ * 
+ * isOdd()
+ *  The isOdd method will evaluate the value of the object and return true/false based on
+ *  the remainder of the division, similiar to isEven().
+ * a. Start an if statement, on the condition that there is a remainder to value / 2. If entered, the method
+ * returns true.
+ * b. If the statement isn't entered, return false.
+ * @param args - Unused
+ * @return - bool true, bool false
+ * 
+ * isPrime()
+ *  The isPrime method will iterate through half the value, dividing and evaluating the remainder to return true/false.
+ * a. Start an if statement, on the condition that value is less than or equal to 1. This is an error catching statement.
+ * b. If not entered, a for loop is started on the condition that i is less than half the value.
+ * c. Start an if statement, on the condition that value / i has no remainder. In that case, the number must be prime, as it's divisible by >2 numbers,
+ * and the method returns false.
+ * d. If the loop never returns false, the method will return true.
+ * @param args - Unused
+ * @return - bool true, bool false
+ * 
+ * All static copies of IsEven(), isOdd(), and isPrime() are all the same, with the only notable diffrence in the names of the methods.
+ * 
+ * equals(int x, int y)
+ *  The equals() method will compare x and y, returning true or false, respectively.
+ * a. Returns true if the statement is true, and false if false.
+ * @param args - int x, int y
+ * @return - bool true, bool false
+ * 
+ * parseInt(int x, char y[])
+ *  The parseInt() method will iterate through the char array and use ASCII and arthimetic to convert the char array
+ *  into integer.
+ * a. Initialize the return variable, total.
+ * b. Start a for loop, on the condition that i is less than x, the size of the array. If entered, the ASCII value of 0
+ * is substracted from the ASCII value of the first element. The remaining value is the integer conversion of the character, and
+ * is added to total.
+ * c. Total is multiplied by 10, before the loop iterates and the next addition to total is effectively appended by adding it to zero.
+ * d. After the loop iterates last, the total is divided by ten to remove the lingering 0 after the loop ended.
+ * e. Return total.
+ * @param args - int x, char y[]
+ * @return - int total
+ * 
+ * parseInt(string x)
+ *  The parseInt() method is similiar in style and purpose to the previous method, the only changes being the removal of the 2nd parameter and type changes.
+ * a. Initialize the return variable, total.
+ * b. Start a for loop, on the condition that i is less than x, the size of the array. If entered, the ASCII value of 0
+ * is substracted from the ASCII value of the first index. The remaining value is the integer conversion of the character, and
+ * is added to total.
+ * c. Total is multiplied by 10, before the loop iterates and the next addition to total is effectively appended by adding it to zero.
+ * d. After the loop iterates last, the total is divided by ten to remove the lingering 0 after the loop ended.
+ * e. Return total.
+ * @param args - string x
+ * @return - int total
+ */
+class MyInteger {
+  private:
+    int value;
+
+  public:
+    MyInteger() {
+        int value;
+    }
+    
+    void setInteger(int x) {
+        value = x;
+    }
+    
+    int getInteger() {
+        return value;
+    }
+    
+    bool isEven() {
+        if (value % 2 == 0) {
+            return true;
+        }
+        return false;
+    }
+    
+    bool isOdd() {
+        if (value % 2 == 1) {
+            return true;
+        }
+        return false; 
+    }
+    
+    bool isPrime() {
+        if (value <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= value / 2; i++) {
+            if (value % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }   
+    
+    static bool is_Even(int x) {
+        if (x % 2 == 0) {
+            return true;
+        }
+        return false;
+    }
+    
+    static bool is_Odd(int x) {
+        if (x % 2 == 1) {
+            return true;
+        }
+        return false;
+    }
+    
+    static bool is_Prime(int x) {
+        if (x <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= x / 2; i++) {
+            if (x % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    static bool IsEven(int x) {
+        if (x % 2 == 0) {
+            return true;
+        }
+        return false;
+    }
+    
+    static bool IsOdd(int x) {
+        if (x % 2 == 1) {
+            return true;
+        }
+        return false;
+    }
+    
+    static bool IsPrime(int x) {
+        if (x <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= x / 2; i++) {
+            if (x % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    static bool equals(int x, int y) {
+        return x == y;
+    }
+    
+    static int parseInt(int x, char y[]) {
+        int total = 0;
+        for (int i = 0; i < x; i++) {
+            total += int(y[i]) - int('0');
+            total *= 10;
+        }
+        total /= 10;
+        return total;
+    }
+    
+    static int parseInt(string x) {
+        int total = 0;
+        for (int i = 0; i <= x.length() - 1; i++) {
+            total += int(x[i]) - int('0');
+            total *= 10;
+        }
+        total /= 10;
+        return total;
+    }
+};
+
+/**
+ * The main() function acts as the driver of the program, prompting the user for the initial
+ * input before printing the results of the MyInteger class methods
+ * 
+ * a. Initialize and define the variables used.
+ * b. Change the cout of bools into text form.
+ * c. Display the purpose of the program.
+ * d. Prompt the user for the integer value.
+ * e. Store the integer into user_int
+ * f. Create two objects from MyInteger, myInt and n2.
+ * g. Use the .setInteger() method to set the value of myInt to user_int.
+ * h. Do the same for n2 and comp_num.
+ * i. Display the number entered, using ,getInteger to get the value.
+ * j. Display the results of the isEven() method on myInt.
+ * k. Repeat step j with the isOdd() method.
+ * l. Repeat step j with the isPrime() method.
+ * m. Display the results of the is_Even() method, using double colons (::) to call the static method.
+ * n. Repeat step m with the is_Odd() method.
+ * o. Repeat step m with the is_Prime() method.
+ * p. Display the results of the IsEven() method, calling on the method without ::
+ * q. Repeat step p with the IsOdd() method.
+ * r. Repeat step p with the IsPrime() method.
+ * s. Display the results of the equals() method, using comp_num as the comparison number.
+ * t. Display the results of the equals() method, using n2 as the comparison number, as well as calling it with (::).
+ * u. Define the char array and string that are converted in parseInt().
+ * v. Display the results of parseInt(int x, char y[]), passing the sizeof(char[]) and the array itself.
+ * w. Display the results of parseInt(string x), using the string s as its parameter.
+ * x. Returns 0 and exits.
+ * 
+ * @param args - Unused
+ * @return - 0.
+ */
+
+int main()
+{
+    int user_int, comp_num = 23, n2_value = 24; string strUserInt;
+    cout << boolalpha;
+    cout << "This program will be used to design a class named MyInteger to perform various operations." << endl;
+    cout << "Enter an integer number (example 23): ";
+    cin >> user_int;
+    MyInteger myInt; MyInteger n2;
+    myInt.setInteger(user_int);
+    n2.setInteger(n2_value);
+    cout << "The number entered: " << myInt.getInteger() << endl;
+    cout << "Is " << myInt.getInteger() << " an Even number: " << myInt.isEven() << endl;
+    cout << "Is " << myInt.getInteger() << " an Odd number: " << myInt.isOdd() << endl;
+    cout << "Is " << myInt.getInteger() << " a Prime number: " << myInt.isPrime() << endl << endl;
+    cout << "Is " << myInt.getInteger() << " an Even number: " << MyInteger::is_Even(myInt.getInteger()) << endl;
+    cout << "Is " << myInt.getInteger() << " an Odd number: " << MyInteger::is_Odd(myInt.getInteger()) << endl;
+    cout << "Is " << myInt.getInteger() << " a Prime  number: " << MyInteger::is_Prime(myInt.getInteger()) << endl << endl;
+    cout << "Is " << myInt.getInteger() << " an Even number: " << myInt.IsEven(myInt.getInteger()) << endl;
+    cout << "Is " << myInt.getInteger() << " an Odd number: " << myInt.IsOdd(myInt.getInteger()) << endl;
+    cout << "Is " << myInt.getInteger() << " a Prime number: " << myInt.IsPrime(myInt.getInteger()) << endl << endl;
+    cout << "Is " << myInt.getInteger() << " equal to " << comp_num << "? " << myInt.equals(myInt.getInteger(), comp_num) << endl;
+    cout << "Is " << myInt.getInteger() << " equal to " << n2.getInteger() << "? " << MyInteger::equals(myInt.getInteger(), n2.getInteger()) << endl << endl;
+    char charsArry[] = {'3', '5', '3', '9'}; string s = "3539";
+    cout << "The integer number for the numeric characters is: " << MyInteger::parseInt(strlen(charsArry), charsArry) << endl;
+    cout << "The integer number for the numeric string is: " << MyInteger::parseInt(s);
+    return 0;
+}
+
+
