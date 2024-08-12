@@ -1,0 +1,97 @@
+/**
+ * Filename: YohannesAzProg11.cpp - This program will continuously prompt the user for two
+ * numerical inputs within a range. These inputs are then checked using the inputValidator function
+ * and a message is displayed depending on the results of the inputValidator function.
+ * 
+ * @author  Aziel Yohannes
+ * @version 1.0
+ * @since   2024-04-11
+ */ 
+// All Headers and/or preprocessors used:
+#include <iostream>
+#include <limits>
+using namespace std;
+
+/**
+ * The inputValidator function acts as an input checker, accepting an input and array (used as a range)
+ * before returning true/false, depending on whether the input is within the range.
+ * 
+ * a. Start a try block.
+ * b. Start an if statement, on the condition that x is within the range of array y.
+ * c. Return true if the condition is met and function ends.
+ * d. Start an else statement, throwing x.
+ * f. Start a catch block, returning false if entered and function ends.
+ * 
+ * @param args - int x, int y[]
+ * @return - true, false
+ */ 
+
+int inputValidator(int x, int y[]) {
+    try {
+        if (x > y[0] and x < y[1]) {
+            return true;
+        } else {
+            throw (x);
+        }
+    }
+    catch (int x) {
+        return false;
+    }
+}
+
+/**
+ * The main function acts as the bulk of the program, continuously prompting for two inputs within a range
+ * and calling the inputValidator function to return true/false for the IsID and IsAge bool variables.
+ * These variables are then used to determine which output to display to the user.
+ * 
+ * a. Define all variables used during the program.
+ * b. Define the bool variables used for determining outputs.
+ * c. Display a message to the user, detailing the purpose and way to close the program.
+ * d. Start a while statement, on the condition that Age and ID are both not equal to 0.
+ * e. Prompt the user for the ID with a range.
+ * f. Store the user's input into ID.
+ * g. Set IsID equal to the result of the inputValidator function, using ID and ID_range as the parameters.
+ * h. Repeat E-G with Age and Age_range variable and array, respectively.
+ * j. Start an if statement on the condition that Age and ID are both equal to 0, at which point,
+ * the continue statement is used to skip to the while loop's condition check, which will flag false and exit the loop.
+ * k. Start an if statement on the condition that both IsID and IsAge are both true, at which point,
+ * a message is displayed, telling the user that both the ID and Age are within range and valid.
+ * l. If the condition fails, an else if statement catches if IsAge is false, displaying a message telling the user that
+ * the Age is invalid and not within range.
+ * m. This pattern is repeated for IsID being false and for both variables being false, each with their own
+ * message telling the user which input was invalid and out of the established range.
+ * n. Upon the while loop exiting, the program displays a goodbye message before ending.
+ * 
+ * @param args - None
+ * @return - Nothing
+ */
+ 
+
+int main()
+{
+    int Age = 1, ID = 1, ID_range[2] = {0, 999}, Age_range[2] = {0, 119};
+    bool IsAge, IsID;
+    cout << "This program will continuously prompt you for an age and ID until 0 is entered for both." << endl;
+    while (!(Age == 0 and ID == 0)) {
+        cout << "Enter ID(0-999): ";
+        cin >> ID;
+        IsID = inputValidator(ID, ID_range);
+        cout << "Enter Age(0-119): ";
+        cin >> Age;
+        IsAge = inputValidator(Age, Age_range);
+        if (Age == 0 and ID == 0) {
+            continue;
+        }        
+        if (IsID == true and IsAge == true) {
+            cout << "ID(" << ID << ") and Age(" << Age << ") are OK.\n\n";
+        } else if (IsAge == false and IsID == true) {
+            cout << Age << " is an invalid Age - Valid ages are: (" << Age_range[0] <<" to " << Age_range[1] << ").\n\n";
+        } else if (IsID == false and IsAge == true) {
+            cout << ID << " is an invalid ID - Valid IDs are: (" << ID_range[0] <<" to " << ID_range[1] << ").\n\n";
+        } else {
+            cout << "ID(" << ID << ") and Age(" << Age << ") are invalid - Valid ages are: (" << Age_range[0] <<" to " << Age_range[1] << ") and Valid IDs are: (" << ID_range[0] <<" to " << ID_range[1] << ").\n\n";
+        }
+    }
+    cout << "See you next time...";
+    return 0;
+}
