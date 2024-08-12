@@ -1,0 +1,98 @@
+/**
+ * Filename: YohannesAzProg10.cpp - This program will accept two numbers from the user and
+ *  find the product without using the C++ multiplication operator (*).
+ * 
+ * @author  Aziel Yohannes
+ * @version 1.0
+ * @since   2024-04-05
+ */
+// Headers and/or preproccesors used:
+#include <iostream>
+#include <limits>
+using namespace std;
+
+/**
+ * The function multy() below acts as the multiplication operator, using the two
+ *  given inputs from the user in the main() function.
+ * 
+ * a. Initialize all variables used in the function. Tempx and Tempy act as reversed copies of x and y.
+ * This is relevent only when the if statement is entered.
+ * b. Start an if statement, on the condition that y is less than i, basically checking if the for loop
+ * used later would be entered for not.
+ * c. If entered, Buffer is set to y and a for loop is started. Variable k is an irrelevant variable, used only
+ * to establish the for loop. The concept behind the multiplication is using adding x to itself, by however
+ * many times y calls for. In the case of the if statement, the roles are reversed using Tempx and Tempy, to allow
+ * the use of negatives. Buffer is set equal to itself + Tempx. This is repeated for as many times as Tempy is equal to.
+ * d. If the statement is not entered, a for loop is started in which Buffer is set equal to itself + x for as many times
+ * as y is equal to. In the case that the If statement is entered, the following for loop outside the statement is ignored
+ * due to the circumstances that the if statement being entered would require.
+ * e. Return Buffer.
+ * 
+ * @param args: x, y
+ * @return:     Buffer
+ */ 
+
+float multy(float x, float y)
+{
+    float Buffer = x, i = 1, Tempx = y, Tempy = x;
+    if (y < i){
+        Buffer = y;
+        for (int k = 0; i < Tempy; i++){
+            Buffer = Buffer + Tempx;
+        }
+    }
+    for (int k = 0; i < y; i++){
+        Buffer = Buffer + x;
+    }
+    return Buffer;
+}
+
+/**
+ * The function below acts as the driver of the program, prompting the user for 2 inputs, validating them
+ * before displaying the product of the two inputs, calculated without using the multiplication operator (*).
+ * 
+ * a. Initialize/Declare all variables used.
+ * b. Display the purpose of the program.
+ * c. Start a while loop, where the bulk of the program will take place. The loop makes sure
+ * the program doesn't end until both user-given inputs equal 0.
+ * d. Prompt the user for the first input.
+ * e. Store the input in Base.
+ * f. Use a while loop to validate and, if the input fails, prompt the user for a valid input.
+ * g. Repeat steps D-F for the second input and store in Multi.
+ * h. Start an if statement on the condition that Base and Multi are both equal to 0. If so,
+ * the continue statement will skip the rest of the while loop before exiting the loop.
+ * i. Set Product equal to the result of multy, using Base and Multi as the parameters, respectively.
+ * j. Display the base, Multi, and Product before looping.
+ * k. When finished, the loop is broken and the program ends after displaying a goodbye message.
+ */ 
+
+int main()
+{
+    float Base = 1, Multi = 1, Product;
+    cout << "This program will use recursive function to multiply two numbers without the use of the C++ multiplication operator (*)";
+    while (Base != 0 || Multi != 0) {
+        cout << "\n\nEnter the first number or use 0 to end: ";
+        cin >> Base;
+        while (cin.fail()){
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            cout << "Invalid input. Please enter a positive integer: ";
+            cin >> Base;
+        }
+        cout << "Enter the second number or use 0 to end: ";
+        cin >> Multi;
+        while (cin.fail()){
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            cout << "Invalid input. Please enter a positive integer: ";
+            cin >> Multi;
+        }
+        if (Base == 0 && Multi == 0) {
+            continue;
+        }
+        Product = multy(Base, Multi);
+        cout << "The product of " << Base << " and " << Multi << " is: " << Product << endl;
+    }
+    cout << "Bye Bye for now...";
+    return 0;
+}
