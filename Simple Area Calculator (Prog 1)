@@ -1,0 +1,61 @@
+/**
+*Filename: YohannesAzProg01.cpp - This program is designed to calculate an area using a length and width provided
+    by the user through the standard input device (keyboard).
+*@author Aziel Yohannes
+*@version 1.0
+*@since 2024-01-28
+*/
+//Header files and/or preprocessors used:
+#include <iostream>
+#include <limits>
+using namespace std;
+/**
+*a. The function starts a standard cpp while loop with the condition that x is equal to 0, 0 representing an invalid input.
+*b. If true, it next clears the invalid input "0" and removes any error flags.
+*c. The function then prompts the user to input a valid digit and will then store the input back into the same variable.
+*d. The while loop then checks the user's input and repeats if invalid, or returns the valid input.
+*e. If the while loop was never entered, the user input is returned immediately.
+*
+*@param args - x
+*@return - x
+*
+*/
+
+int input_check(int x){
+    while(x == 0){
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Please input a numerical digit not equal to zero: " <<  endl;
+        cin >> x;
+    }
+return x;
+}
+
+/**
+*The main() function below is the main program itself, acting as the meat of the code.
+*a. Displays the purpose of the program using cout and prompts the user for the first variable.
+*b. Stores the input using the standard cpp input (cin).
+*c. Runs the input_check function above on the stored variable.
+*d. The input_check function validates and stores the input into the variable using cin.
+*e. The Program repeats the process (except for explaining the program's purpose) on the width variable.
+*f. It performs the calculation using c++ standard math syntax (x*y).
+*g. It uses the c++ standard output to display the area.
+*h. The program ends once the area is displayed.
+*
+*@param args - length, width
+*@return - 0
+*
+*/
+
+int main () {
+    int length, width;
+        cout << "This program will calculate the area of a rectangle, given the length and width.\n" << endl << "Please enter the length: " <<endl;
+        cin >> length;
+        length = input_check(length);
+        cout << "Please enter the width: " << endl;
+        cin >> width;
+        width = input_check(width);
+        int area = length * width;
+        cout << "\nThe area of the rectangle is " << area << endl;
+        return 0;
+}
