@@ -1,0 +1,243 @@
+/**
+ * Filename: YohannesAzProg14.cpp - This program will accept a user input as a long int
+ *  before performing a series of tests on the number, using class methods defined outside the class,
+ *  before returning the validity of the user's input depending on the results of the tests.
+ * 
+ * @author Aziel Yohannes
+ * @version 1.0
+ * @since 2024-05-03
+ */
+//Headers and/or preprocessors used:
+#include <iostream>
+using namespace std;
+
+/**
+ * The class CreditValid contains all operations and tests needed to verify
+ * the validity of the user's input. The code inside the class itself is the declarations
+ * of all the methods used. All methods are defined outside the class declaration.
+ */
+
+class CreditValid {
+    public:
+        long getSize(long x);
+        long getSize();
+        long getNum();
+        void setNum(long x);
+        long getPrefix(long x, int k);
+        bool prefixMatched(long x, int d);
+        int getDigit(int x);
+        int sumOfDoubleEvenPlace(long x);
+        int sumOfOddPlace(long x);
+        bool isValid(long x);
+    
+    private:
+        long Num;
+};
+
+/**
+ * getSize(long x)
+ *  The getSize(long x) method passes a long int and performs operations to return
+ *  the size of x as an int.
+ * a. Declare the variable int size.
+ * b. Start a for loop, on the condition that x doesn't equal zero. When entered, 
+ * the loop will divide x by 10, effectively popping x until it reaches 0. After each
+ * pop, size increments by 1, acting as a counter for each digit in the number.
+ * c. Return size.
+ * 
+ * @param args - long x
+ * @return - size
+ * 
+ * 
+ * getNum()
+ *  The getNum() method returns the Num attribute of the class object.
+ * a. Return Num.
+ * 
+ * @param args - None
+ * @return - Num
+ * 
+ * 
+ * setNum(long x)
+ *  The setNum(long x) method passes a long x as a parameter and sets the attribute Num equal to
+ *  x.
+ * a. Set Num equal to x.
+ * 
+ * @param args - long x
+ * @return - None
+ * 
+ * 
+ * getPrefix(long x, int k)
+ *  The getPrefix(long x, int k) method passes a long x and int k through, before performing
+ *  operations on temporary variables to return the first k digits of x.
+ * a. Initialize all variables used in the method, as well as the class object TempNum
+ * b. start a for loop, on the condition that int i is less than the result of the size
+ * of TempNum - k. This value represents the digits of x with k amount of digits cut off.
+ * c. For each loop, prefix is divided by 10, popping a digit from the card number. Int i
+ * is then incremented by 1 and continues until prefix represents x without k digits.
+ * d. Return prefix.
+ * 
+ * @param args - long x, int k
+ * @return - prefix
+ * 
+ * 
+ * prefixMatched(long x, int d)
+ *  The prefixMatched(longx, int d) returns true or false depending on whether
+ *  the prefix of x is equal to d.
+ * a. Call the method getPrefix(), passing long x and int d as the parameters.
+ * It then compares the returned value to d and returns the resulting true/false value.
+ * 
+ * @param args - long x, int d
+ * @return true, false
+ * 
+ * 
+ * getDigit(int x)
+ *  The getDigit(int x) method returns the result of adding the remainder of x/10 and x/10.
+ * a. Return the result of the addition of the remainder of x/10 and x/10 as an int
+ * 
+ * @param args - int x
+ * @return - int (x % 10 + (x / 10))
+ * 
+ * 
+ * sumOfDoubleEvenPlace(long x)
+ *  The sumOfDoubleEvenPlace(long x) will accept long x and add up every even placed digit
+ *  in x.
+ * a. Initialize result equal to 0.
+ * b. Pop the first digit off x, starting the while loop on an even placed digit.
+ * c. Start a while loop, on the condition that x doesn't equal 0. The returned value of
+ * the getDigit method, using the remainder of (x/10) * 2 as the parameter, is added to result.
+ * d. x is popped twice, dividing by 100 to remove 2 digits from the end. The loop continues until
+ * all digits are popped from x.
+ * e. Return result.
+ * 
+ * @param args - long x
+ * @return - result
+ * 
+ * 
+ * sumOfOddPlace(long x)
+ *  The sumOfOddPlace(long x) method iterates through x, checking all odd placed digits
+ *  and adding them to result, before returning result.
+ * a. Initialize result equal to 0.
+ * b. Start a while loop, on the condition that x doesn't equal 0. The remainder of x/10 is added to result,
+ * effectively adding the target digit to result.
+ * c. Divide x by 100, skipping over a digit and effectively only checking odd numbers.
+ * d. Return result.
+ * 
+ * @param args - long x
+ * @return - result
+ * 
+ * 
+ * isValid(long x)
+ *  The isValid(long x) method acts as the culmination of all previous methods, representing
+ *  the Luhm test in full. The method will call the various methods and compare the results, only
+ *  returning true if all checks are passed.
+ * a. Initialize isCcValid as false.
+ * b. Start an if statement, on the condition that the size of x is between 13 and 16.
+ * c. Start a nested if statement, on the condition that result of the prefixMatched() method, passing x and
+ * 4, 5, 6, and 37, each in different OR conditions, is true.
+ * d. Start another nested if statement, on the condition that the sum of the returned values of sumOfDoubleEvenPlace and
+ * sumOfOddPlace is divisible by 10. If true, isCcValid is set equal to true.
+ * e. Return isCcValid.
+ * 
+ * @param args - long x
+ * @return - isCcValid
+ */
+
+long CreditValid::getSize(long x) {
+    int size;
+    for (size = 0; x != 0; size++) { 
+        x /= 10;
+    }
+    return size;
+}
+
+long CreditValid::getNum() {
+    return Num;
+}
+
+void CreditValid::setNum(long x) {
+    Num = x;
+}
+
+long CreditValid::getPrefix(long x, int k) {
+    long prefix = x; CreditValid TempNum;
+    for (int i = 0; i < (TempNum.getSize(x) - k); i++) {
+        prefix /= 10;
+    }
+    return prefix;
+}
+
+bool CreditValid::prefixMatched(long x, int d) {
+    return getPrefix(x, getSize(d)) == d;
+}
+
+int CreditValid::getDigit(int x) {
+    return x % 10 + (x / 10);
+}
+
+int CreditValid::sumOfDoubleEvenPlace(long x) {
+    int result = 0;
+    x /= 10;
+    while (x != 0) {
+        result += getDigit((int)(x % 10) * 2);
+        x /= 100;
+    }
+    return result;
+}
+
+int CreditValid::sumOfOddPlace(long x) {
+    int result = 0;
+    while (x != 0) {
+        result += ((int)(x % 10));
+        x /= 100;
+    }
+    return result;
+}
+
+bool CreditValid::isValid(long x) {
+    bool isCcValid = false;
+    if ((getSize(x) >= 13) && (getSize(x) <= 16)) {
+        if (prefixMatched(x, 4) || prefixMatched(x, 5) || prefixMatched(x, 6) || prefixMatched(x, 37)) {
+            if (((sumOfDoubleEvenPlace(x) + sumOfOddPlace(x)) % 10) == 0) {
+                isCcValid = true;
+            }
+        }
+    }
+    return isCcValid;
+}
+
+/**
+ * The main() function acts as the driver of the program, setting up the objects and prompting the user for the necessary inputs
+ * to test the validity of the credit card number, before displaying the interpreted results of isValid.
+ * 
+ * a. Declare number and initialize Valid as false.
+ * b. Display the purpose of the program to the user.
+ * c. Prompt the user for the credit card number, specifically as a long integer.
+ * d. Store the user's input in number.
+ * e. Create the CreditValid class object credNum.
+ * f. Use the setNum() method to set the Num attribute of credNum equal to number.
+ * g. Set Valid equal to the returned true/false value of isValid(). isValid() is where the majority of
+ * the verification process takes place.
+ * h. Start an if statement, on the condition that Valid is equal to true. If entered, display that the
+ * credit card number is valid. If not entered, the else statement is run, displaying that the
+ * credit card number is invalid.
+ * i. Program exits.
+ * 
+ * @param args - None.
+ * @return - None.
+ */
+
+int main()
+{
+    long number; bool Valid = false;
+    cout << "This program will use the Luhn check to validate a credit card number.\n";
+    cout << "Enter the credit card number as a long integer: ";
+    cin >> number;
+    CreditValid credNum;
+    credNum.setNum(number);
+    Valid = credNum.isValid(credNum.getNum());
+    if (Valid == true) {
+        cout << credNum.getNum() << " is a valid card number.";
+    } else {
+        cout << credNum.getNum() << " is an invalid card number.";
+    }
+    return 0;
+}
