@@ -1,0 +1,86 @@
+/**
+ * Filename: YohannesAzProg06.cpp - This program will accept 3 user inputs and return the best option based on said input.
+ * 
+ * @author  Aziel Yohannes
+ * @version 1.0
+ * @since   2024-03-01
+*/
+// Headers and/or preproccesors used:
+#include <iostream>
+#include <limits>
+#include <cctype>
+#include <string>
+#include <stack>
+using namespace std;
+
+/**
+ * The main() function will prompt for user input 3 times before returning a specific
+ * string based on the user's input.
+ * 
+ * a. Declare all variables used during the program.
+ * b. Display a string detailing the purpose of the program as well as prompt the user for the first input.
+ * c. Store user input into "talkMins".
+ * d. Start a while loop on the condition that cin fails due to an invalid input. If entered, the cin error is ignored and
+ * the user is prompted for a valid input which is then stored back into the variable and reevaluated.
+ * e. Repeat steps b-d (excluding the program description) on the variables "textMsgs" and "dataAmt", respectively.
+ * f. Start an if statement on the condition that "dataAmt" is greater than or equal to one. If entered, starts another if statement
+ * on the condition that "dataAmt" is greater than 2, in which case, the program will display a string recommending them plan F. Otherwise,
+ * the program will display plan E.
+ * g. If "dataAmt" is less than one, an else if statement checks if "talkMins" is less than 500, in which case, the loop is entered and another if statement is
+ * started, on the condition that "textMsgs" is less than 1, at which point, plan A is displayed. If "textMsgs" is greater than 0, plan B is displayed.
+ * h. If "talkMins" is greater than or equal to 500, another if statement is started on the condition that "textMsgs" is less than or equal to 100, in which case,
+ * plan C is displayed. If "textMsgs" is greater than 100, plan D is displayed.
+ * i. The program returns 0.
+ * 
+ * @param args - None.
+ * @return   -   0.
+*/
+
+int main()
+{
+    int talkMins, textMsgs, dataAmt;
+    cout << "This service will recommend a cellphone plan based on your needs." << "\nEnter talk minutes needed: ";
+    cin >> talkMins;
+    while (cin.fail()){
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        cout << "Invalid input. Please enter a positive integer: ";
+        cin >> talkMins;
+    }
+    cout << "Enter text messages needed: ";
+    cin >> textMsgs;
+    while (cin.fail()){
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        cout << "Invalid input. Please enter a positive integer: ";
+        cin >> textMsgs;
+    }
+    cout << "Enter gigabytes of data needed: ";
+    cin >> dataAmt;
+    while (cin.fail()){
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        cout << "Invalid input. Please enter a positive integer: ";
+        cin >> dataAmt;
+    }
+    if (dataAmt >= 1){
+        if (dataAmt > 2){
+            cout << "Plan F @ $87 per month is my recommendation for you.";
+        } else {
+            cout << "Plan E @ $79 per month is my recommendation for you.";
+        }
+    } else if (talkMins < 500) {
+        if (textMsgs < 1) { 
+            cout << "Plan A @ $49 per month is my recommendation for you.";
+        } else if (textMsgs > 0) {
+            cout << "Plan B @ $55 per month is my recommendation for you.";
+        }
+    } else if (talkMins >= 500) {
+        if (textMsgs <= 100) {
+            cout << "Plan C @ $61 per month is my recommendation for you.";
+        } else if (textMsgs > 100) {
+            cout << "Plan D @ $70 per month is my recommendation for you.";
+        }
+    }
+    return 0;
+}
