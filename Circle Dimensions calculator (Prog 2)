@@ -1,0 +1,71 @@
+/**
+ * Filename: YohannesAzProg02.cpp - This program utilizes the terminal to take in a user-given radius and output
+ * to the standard output the diameter, circumference, surface area, and volume.
+ * 
+ * @author  Aziel Yohannes
+ * @version 1.0
+ * @since   2024-01-30
+*/
+
+//Header files and/or preprocessors used: 
+
+#include <iomanip>
+#include <iostream>
+#include <limits>
+#include <cmath>
+using namespace std;
+
+/**
+ *This function acts as an input validator, ensuring the user's input is able to be calculated with.
+ *a. The function starts a standard cpp while loop with the condition that x is equal to 0, 0 representing an invalid input.
+ *b. If true, it next clears the invalid input "0" and removes any error flags.
+ *c. The function then prompts the user to input a valid digit and will then store the input back into the same variable.
+ *d. The while loop then checks the user's input and repeats if invalid, or returns the valid input.
+ *e. If the while loop was never entered, the user input is returned immediately.
+ * 
+ * 
+ * @param args: x
+ * @returns: x
+*/
+
+int input_checker(int x){
+    while(x <= 0){
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Please input a positive numerical digit not equal to zero: ";
+        cin >> x;
+    }
+return x;
+}
+
+/**
+ * The main() function is the bulk of the program and will carry out the calculations.
+ * a. Declares all variables used in the program as doubles.
+ * b. Display the purpose of the program and prompt the user for the radius.
+ * c. Stores the input into the "Radius" variable.
+ * d. Runs the "Radius" variable through the "input_checker" function, defined earlier.
+ * e. Set the Diameter equal to the Radius times 2, "*" being the multiplication operator.
+ * f. Set the Circumference equal to the Diameter * acos(-1), which represents exact pi.
+ * g. Set the Surface_Area equal to the constant "4" times acos(-1) times the Radius squared, which can be represented by multiplying the radius by itself.
+ * h. Set the Volume equal to 4.0/3 (the 4.0 must be a double for proper calculation) times acos(-1) times the Radius cubed.
+ * i. Display all variables in order, using the "setprecision" function to allow 14 digits to print, as well as starting new lines for each variable displayed.
+ * j. Program ends.
+ * 
+ * 
+ * @param args: Radius, Diameter, Circumference, Surface_Area, Volume
+ * @return: 0
+*/
+
+int main()
+{
+    double Radius, Diameter, Circumference, Surface_Area, Volume;
+    cout << "This program will take a given radius of a sphere and return the diameter, circumference, surface area, and volume of the sphere." << endl << "Please input the radius: ";
+    cin >> Radius;
+    Radius = input_checker(Radius);
+    Diameter = Radius * 2;
+    Circumference = Diameter * acos(-1);
+    Surface_Area = 4 * acos(-1) * Radius * Radius;
+    Volume = 4.0/3 * (acos(-1)) * Radius * Radius * Radius;
+    cout << setprecision(15) << "Radius: " << Radius << "\nDiameter: " << Diameter << "\nSurface Area: " << Surface_Area << "\nVolume: " << Volume;
+    return 0;
+}
